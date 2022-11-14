@@ -36,6 +36,7 @@ Return a Dictionary of all the states in this FSM Control node along with a Bool
  1. `newStateActivated(state_name: String)`:
  This signal is emitted whenever a new state is activated and returns the new state's name.
 
+
 <u>**2. FSM State**</u>
 Child node of FSM Control.
 The name of this node becomes the name of a new state.
