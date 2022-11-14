@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddlaofopdhff2"]
+
+[ext_resource type="Script" path="res://addons/state_machine/Scripts/FiniteStateMachine/FSM Control.gd" id="1_26qta"]
+[ext_resource type="Script" path="res://Demo/demo_player.gd" id="1_r865a"]
+[ext_resource type="Script" path="res://addons/state_machine/Scripts/FiniteStateMachine/FSM State.gd" id="2_i2v6p"]
+
+[node name="Demo" type="Node2D"]
+
+[node name="demo_player" type="Node2D" parent="."]
+script = ExtResource("1_r865a")
+
+[node name="color" type="ColorRect" parent="demo_player"]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+
+[node name="FSM_Control" type="Node" parent="demo_player"]
+script = ExtResource("1_26qta")
+
+[node name="idle" type="Node" parent="demo_player/FSM_Control"]
+script = ExtResource("2_i2v6p")
+default_state = true
+
+[node name="moving" type="Node" parent="demo_player/FSM_Control"]
+script = ExtResource("2_i2v6p")
+
+[connection signal="StateActivated" from="demo_player/FSM_Control/idle" to="demo_player" method="_on_idle_state_activated"]
+[connection signal="StateExiting" from="demo_player/FSM_Control/idle" to="demo_player" method="_on_idle_state_exiting"]
+[connection signal="StateActivated" from="demo_player/FSM_Control/moving" to="demo_player" method="_on_moving_state_activated"]
+[connection signal="StateExiting" from="demo_player/FSM_Control/moving" to="demo_player" method="_on_moving_state_exiting"]
