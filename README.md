@@ -13,7 +13,8 @@ They are:
  1. FSM Control
  2. FSM State
 
-<u>**1. FSM Control**</u>
+## <u>**1. FSM Control**</u>
+
 Necessary container/parent node of FSM State.
 There are no options to be configured for this node.
 The names of the states are set as the name of the FSM State node.
@@ -36,8 +37,8 @@ Return a Dictionary of all the states in this FSM Control node along with a Bool
  1. `newStateActivated(state_name: String)`:
  This signal is emitted whenever a new state is activated and returns the new state's name.
 
+## <u>**2. FSM State**</u>
 
-<u>**2. FSM State**</u>
 Child node of FSM Control.
 The name of this node becomes the name of a new state.
 
