@@ -23,7 +23,7 @@ func deactivate():
 	active = false
 	StateExited.emit()
 
-func is_active():
+func is_active() -> bool:
 	return active
 
 func _process(delta):
