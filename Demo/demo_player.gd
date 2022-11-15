@@ -19,10 +19,14 @@ func _physics_process(_delta):
 
 func _on_idle_state_activated():
 	$color.color = Color.WHITE
+	print_debug("Entering Idle State")
+	print("----------------------------------------")
 
 
 func _on_moving_state_activated():
 	$color.color = Color.GOLD
+	print_debug("Entering Moving State")
+	print("----------------------------------------")
 
 
 func _on_idle_state_exiting():

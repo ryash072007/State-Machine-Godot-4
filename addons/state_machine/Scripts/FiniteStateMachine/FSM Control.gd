@@ -3,7 +3,7 @@ extends Node
 
 signal newStateActivated(state_name: String)
 
-var states: Dictionary = {
+var _states: Dictionary = {
 #	"state_name": active or inactive (true or false)
 }
 
@@ -15,11 +15,11 @@ func _ready():
 		if "type" in child:
 			if child.type == "FSM State":
 				if !default_already_set and child.default_state == true:
-					states[child.name] = true
+					_states[child.name] = true
 					default_already_set = true
 				else:
 					child.default_state = false
-					states[child.name] = false
+					_states[child.name] = false
 	
 #	print(states)
 
@@ -27,7 +27,7 @@ func activate_state(state_name: String) -> int:
 	
 	if state_name == get_active_state(): return OK
 	
-	if !states.has(state_name): return FAILED
+	if !_states.has(state_name): return FAILED
 	
 	var err = get_node_or_null(state_name)
 	if err == null: return FAILED
@@ -48,19 +48,19 @@ func activate_state(state_name: String) -> int:
 	active_state_node.deactivate()
 	err.activate()
 	
-	states[active_state] = false
-	states[state_name] = true
+	_states[active_state] = false
+	_states[state_name] = true
 	
 	newStateActivated.emit(state_name)
 	
 	return OK
 
 func get_active_state() -> String:
-	for key in states.keys():
-		if states[key] == true:
+	for key in _states.keys():
+		if _states[key] == true:
 			return key
 	
 	return "null"
 
 func get_states() -> Dictionary:
-	return states
+	return _states

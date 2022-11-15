@@ -4,7 +4,7 @@ const type: String = "FSM State"
 
 @export var default_state: bool = false
 
-var active: bool = false
+var _active: bool = false
 
 signal StateActivated
 signal StateExiting
@@ -14,22 +14,22 @@ signal CallEveryPhysicsProcessFrame(delta: float)
 
 
 func activate():
-	active = true
+	_active = true
 	StateActivated.emit()
 
 func deactivate():
-	if !active: return
+	if !_active: return
 	StateExiting.emit()
-	active = false
+	_active = false
 	StateExited.emit()
 
 func is_active() -> bool:
-	return active
+	return _active
 
 func _process(delta):
-	if !active: return
+	if !_active: return
 	CallEveryProcessFrame.emit(delta)
 
 func _physics_process(delta):
-	if !active: return
+	if !_active: return
 	CallEveryPhysicsProcessFrame.emit(delta)
