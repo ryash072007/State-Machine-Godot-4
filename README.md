@@ -49,7 +49,11 @@ The name of this node becomes the name of a new state.
  1. `default_state`:
  A Boolean value that states whether this state is the default state of the FSM Control Node. If more than one `default_state` states are set then the first FSM State that is set as default will be set as default.
  
- **Signals:**
+**Methods:**
+ 1. `is_active()`:
+ Returns whether the state is active or not in Boolean.
+
+**Signals:**
  
  As these are signals, multiple nodes can be connected to this signal and be called.
  
