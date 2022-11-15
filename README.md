@@ -34,6 +34,8 @@ Return a Dictionary of all the states in this FSM Control node along with a Bool
 
 **Signals:**
 
+As these are signals, multiple nodes can be connected to this signal and be called.
+
  1. `newStateActivated(state_name: String)`:
  This signal is emitted whenever a new state is activated and returns the new state's name.
 
@@ -48,6 +50,8 @@ The name of this node becomes the name of a new state.
  A Boolean value that states whether this state is the default state of the FSM Control Node. If more than one `default_state` states are set then the first FSM State that is set as default will be set as default.
  
  **Signals:**
+ 
+ As these are signals, multiple nodes can be connected to this signal and be called.
  
  1. `CallEveryPhysicsProcessFrame(delta: float)`:
  If the current state is active then this signal is emitted every physics frame and return the time difference between previous physics frame and current physics frame.
