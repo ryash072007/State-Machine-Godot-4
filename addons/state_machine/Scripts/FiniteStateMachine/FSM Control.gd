@@ -1,6 +1,8 @@
 #FSM Control
 extends Node
 
+signal newStateActivated(state_name: String)
+
 var states: Dictionary = {
 #	"state_name": active or inactive (true or false)
 }
@@ -16,6 +18,7 @@ func _ready():
 					states[child.name] = true
 					default_already_set = true
 				else:
+					child.default_state = false
 					states[child.name] = false
 	
 #	print(states)
@@ -47,6 +50,8 @@ func activate_state(state_name: String) -> int:
 	
 	states[active_state] = false
 	states[state_name] = true
+	
+	newStateActivated.emit(state_name)
 	
 	return OK
 

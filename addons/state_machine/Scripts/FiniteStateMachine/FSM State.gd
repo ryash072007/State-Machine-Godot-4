@@ -23,6 +23,9 @@ func deactivate():
 	active = false
 	StateExited.emit()
 
+func is_active():
+	return active
+
 func _process(delta):
 	if !active: return
 	CallEveryProcessFrame.emit(delta)
